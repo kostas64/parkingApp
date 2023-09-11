@@ -1,7 +1,7 @@
 export const mapStyle = [
   {
-    featureType: 'administrative',
-    elementType: 'geometry',
+    featureType: 'poi',
+    elementType: 'labels.text',
     stylers: [
       {
         visibility: 'off',
@@ -9,7 +9,7 @@ export const mapStyle = [
     ],
   },
   {
-    featureType: 'poi',
+    featureType: 'poi.business',
     stylers: [
       {
         visibility: 'off',
