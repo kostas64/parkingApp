@@ -1,15 +1,15 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Animated} from 'react-native';
 
 import {colors} from '../assets/colors';
 
-const ActiveMarker = () => {
+const ActiveMarker = ({opacity, scale}) => {
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, {opacity, transform: [{scale}]}]}>
       <View style={styles.box} />
       <View style={styles.triangle} />
       <Text style={styles.label}>P</Text>
-    </View>
+    </Animated.View>
   );
 };
 
