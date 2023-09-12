@@ -4,7 +4,7 @@ export const markers = [
     latitude: 38.02955333857324,
     longitude: 23.775922890021665,
     img: require('../assets/images/parking1.png'),
-    name: 'Rooftop parking',
+    name: 'California Parking',
     address: 'Sofouli 65, Marousi, Athens',
     free: 14,
     costPerHour: 3,
