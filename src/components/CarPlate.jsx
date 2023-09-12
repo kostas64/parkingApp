@@ -3,10 +3,13 @@ import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 
 import images from '../assets/images';
 import {colors} from '../assets/colors';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const CarPlate = () => {
+  const insets = useSafeAreaInsets();
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={[styles.container, {top: insets.top + 8}]}>
       <View style={styles.imageContainer}>
         <Image source={images.carUp} style={styles.car} />
       </View>
@@ -22,8 +25,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     position: 'absolute',
-    top: 16,
-    right: 16,
+    right: 24,
     zIndex: 100,
     paddingLeft: 4,
     paddingVertical: 4,
@@ -53,10 +55,11 @@ const styles = StyleSheet.create({
     paddingLeft: 12,
   },
   myCarLabel: {
+    fontFamily: 'Poppins-Regular',
     color: 'rgba(0,0,0,0.5)',
   },
   plate: {
-    fontWeight: '700',
+    fontFamily: 'Poppins-SemiBold',
   },
 });
 

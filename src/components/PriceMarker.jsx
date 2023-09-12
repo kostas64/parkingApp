@@ -15,16 +15,16 @@ const PriceMarker = ({opacity}) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 90,
-    height: 90,
+    width: 80,
+    height: 80,
     alignItems: 'center',
     justifyContent: 'center',
   },
   box: {
     position: 'absolute',
     backgroundColor: colors.lightBlack,
-    width: 48,
-    height: 48,
+    width: 42,
+    height: 42,
     borderRadius: 16,
   },
   triangle: {
@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
     transform: [{rotate: '45deg'}],
   },
   label: {
+    fontFamily: 'Poppins-Medium',
     color: 'white',
-    fontWeight: '500',
     fontSize: 18,
   },
 });

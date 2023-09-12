@@ -2,10 +2,13 @@ import React from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 
 import {colors} from '../assets/colors';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const MenuButton = () => {
+  const insets = useSafeAreaInsets();
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={[styles.container, {top: insets.top + 8}]}>
       <View style={styles.upperLine} />
       <View style={styles.bottomLine} />
     </TouchableOpacity>
@@ -16,7 +19,7 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     top: 16,
-    left: 16,
+    left: 24,
     backgroundColor: 'white',
     zIndex: 100,
     borderRadius: 24,

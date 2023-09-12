@@ -1,12 +1,15 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {View, Text, Image, Animated, StyleSheet} from 'react-native';
+import {Directions, FlingGestureHandler} from 'react-native-gesture-handler';
+import {View, Text, Image, Animated, StyleSheet, Pressable} from 'react-native';
 
 import images from '../assets/images';
+import {colors} from '../assets/colors';
 import {WIDTH} from '../assets/constants';
 import {markers} from '../assets/markers';
-import {Directions, FlingGestureHandler} from 'react-native-gesture-handler';
 
-const MapParkingCard = ({max, selectedSlot, setSelectedSlot}) => {
+const AnimPressable = Animated.createAnimatedComponent(Pressable);
+
+const MapParkingCard = ({max, openModal, selectedSlot, setSelectedSlot}) => {
   const [state, setState] = useState(selectedSlot);
   const opacityRef = useRef(new Animated.Value(1)).current;
   const translateY = useRef(new Animated.Value(0)).current;
@@ -51,13 +54,11 @@ const MapParkingCard = ({max, selectedSlot, setSelectedSlot}) => {
       <FlingGestureHandler
         direction={Directions.LEFT}
         onActivated={() => selectedSlot > 0 && setSelectedSlot(old => old - 1)}>
-        <Animated.View
+        <AnimPressable
+          onPress={() => openModal(markers?.[state])}
           style={[
             styles.container,
-            {
-              opacity: opacityRef,
-              transform: [{translateY}],
-            },
+            {opacity: opacityRef, transform: [{translateY}]},
           ]}>
           <View style={styles.leftBody}>
             {/* Title & Address */}
@@ -69,35 +70,23 @@ const MapParkingCard = ({max, selectedSlot, setSelectedSlot}) => {
             </View>
             {/* Slots & Cost */}
             <View style={styles.rowCenter}>
-              <View
-                style={[
-                  styles.rowCenter,
-                  {
-                    marginRight: 28,
-                  },
-                ]}>
-                <Image
-                  source={images.car}
-                  style={[
-                    styles.icon,
-                    {
-                      tintColor: 'rgba(0,0,0,0.4)',
-                    },
-                  ]}
-                />
-                <Text>{`${markers?.[state]?.free} slot${
-                  markers?.[state]?.free !== 1 ? 's' : ''
-                }`}</Text>
+              <View style={[styles.rowCenter, {marginRight: 28}]}>
+                <Image source={images.car} style={[styles.icon]} />
+                <Text style={styles.colorBlack}>{`${
+                  markers?.[state]?.free
+                } slot${markers?.[state]?.free !== 1 ? 's' : ''}`}</Text>
               </View>
               <View style={styles.rowCenter}>
                 <Image source={images.dollar} style={styles.icon} />
-                <Text>{`${markers?.[state]?.costPerHour} / h`}</Text>
+                <Text style={styles.colorBlack}>{`$${markers?.[
+                  state
+                ]?.costPerHour?.toFixed(2)}/h`}</Text>
               </View>
             </View>
           </View>
           {/* Right Image */}
           <Image source={markers?.[state]?.img} style={styles.image} />
-        </Animated.View>
+        </AnimPressable>
       </FlingGestureHandler>
     </FlingGestureHandler>
   );
@@ -131,23 +120,30 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   name: {
+    fontFamily: 'Poppins-Medium',
+    color: colors.lightBlack,
     paddingBottom: 2,
     fontSize: 18,
     fontWeight: '700',
   },
   address: {
+    fontFamily: 'Poppins-Regular',
     width: WIDTH - 96 - 96,
     color: 'rgba(0,0,0,0.5)',
   },
   icon: {
-    width: 16,
-    height: 16,
+    width: 18,
+    height: 18,
     marginRight: 8,
   },
   image: {
     width: 90,
     height: 90,
     borderRadius: 24,
+  },
+  colorBlack: {
+    fontFamily: 'Poppins-Regular',
+    color: colors.lightBlack,
   },
 });
 

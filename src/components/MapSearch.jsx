@@ -1,44 +1,39 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {View, StyleSheet, Image, TextInput, Pressable} from 'react-native';
+import {View, StyleSheet, Image, Pressable, Text} from 'react-native';
 
 import images from '../assets/images';
 import {colors} from '../assets/colors';
+import {WIDTH} from '../assets/constants';
+import {useNavigation} from '@react-navigation/native';
 
 const MapSearch = () => {
-  const [input, setInput] = useState('');
-
+  const navigation = useNavigation();
   const insets = useSafeAreaInsets();
-  const marginVertical = insets.top > 0 ? insets.top : 24;
+  const marginVertical = insets.bottom > 0 ? insets.bottom : 16;
 
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          marginVertical,
-        },
-      ]}>
+    <Pressable
+      onPress={() => navigation.navigate('Search')}
+      style={[styles.container, {marginVertical}]}>
       <View style={styles.rowCenter}>
         <Image source={images.search} style={styles.searchIcon} />
-        <TextInput
-          value={input}
-          onChangeText={setInput}
-          style={styles.input}
-          placeholder="Parking address..."
-          placeholderTextColor={'rgba(0,0,0,0.35)'}
-        />
+        <Text style={styles.input}>{'Parking address...'}</Text>
       </View>
-      <Pressable onPress={() => setInput('')}>
+      <Pressable>
         <Image source={images.close} style={styles.closeIcon} />
       </Pressable>
-    </View>
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    width: WIDTH,
+    position: 'absolute',
+    bottom: 0,
     height: 60,
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -59,7 +54,10 @@ const styles = StyleSheet.create({
     height: 16,
   },
   input: {
-    fontSize: 16,
+    top: 2,
+    fontFamily: 'Poppins-Regular',
+    color: 'rgba(0,0,0,0.4)',
+    fontSize: 18,
     paddingLeft: 16,
   },
 });

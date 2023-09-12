@@ -2,13 +2,16 @@ import React from 'react';
 import {View, Text, StyleSheet, Animated} from 'react-native';
 
 import {colors} from '../assets/colors';
+import {isAndroid} from '../assets/constants';
 
 const ActiveMarker = ({opacity, scale}) => {
   return (
     <Animated.View style={[styles.container, {opacity, transform: [{scale}]}]}>
-      <View style={styles.box} />
+      <View style={styles.box}>
+        <Text style={styles.label}>P</Text>
+      </View>
       <View style={styles.triangle} />
-      <Text style={styles.label}>P</Text>
+      <View style={styles.yellowDot} />
     </Animated.View>
   );
 };
@@ -22,6 +25,8 @@ const styles = StyleSheet.create({
   },
   box: {
     position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: colors.yellow,
     width: 60,
     height: 60,
@@ -37,9 +42,20 @@ const styles = StyleSheet.create({
     transform: [{rotate: '45deg'}],
   },
   label: {
+    top: isAndroid ? 2 : 1,
+    fontFamily: 'Poppins-SemiBold',
     color: colors.lightBlack,
-    fontWeight: '700',
-    fontSize: 28,
+    fontSize: 32,
+  },
+  yellowDot: {
+    position: 'absolute',
+    width: 12,
+    height: 8,
+    backgroundColor: colors.yellow,
+    top: 80,
+    left: 39,
+    borderRadius: 10,
+    opacity: 0.35,
   },
 });
 
