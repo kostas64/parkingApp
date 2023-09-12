@@ -4,8 +4,9 @@ import {View, Text, Image, Animated, StyleSheet} from 'react-native';
 import images from '../assets/images';
 import {WIDTH} from '../assets/constants';
 import {markers} from '../assets/markers';
+import {Directions, FlingGestureHandler} from 'react-native-gesture-handler';
 
-const MapParkingCard = ({selectedSlot}) => {
+const MapParkingCard = ({max, selectedSlot, setSelectedSlot}) => {
   const [state, setState] = useState(selectedSlot);
   const opacityRef = useRef(new Animated.Value(1)).current;
   const translateY = useRef(new Animated.Value(0)).current;
@@ -42,53 +43,63 @@ const MapParkingCard = ({selectedSlot}) => {
   }, [selectedSlot]);
 
   return (
-    <Animated.View
-      style={[
-        styles.container,
-        {
-          opacity: opacityRef,
-          transform: [{translateY}],
-        },
-      ]}>
-      <View style={styles.leftBody}>
-        {/* Title & Address */}
-        <View>
-          <Text style={styles.name}>{markers?.[state]?.name}</Text>
-          <Text numberOfLines={2} style={styles.address}>
-            {markers?.[state]?.address}
-          </Text>
-        </View>
-        {/* Slots & Cost */}
-        <View style={styles.rowCenter}>
-          <View
-            style={[
-              styles.rowCenter,
-              {
-                marginRight: 28,
-              },
-            ]}>
-            <Image
-              source={images.car}
-              style={[
-                styles.icon,
-                {
-                  tintColor: 'rgba(0,0,0,0.4)',
-                },
-              ]}
-            />
-            <Text>{`${markers?.[state]?.free} slot${
-              markers?.[state]?.free !== 1 ? 's' : ''
-            }`}</Text>
+    <FlingGestureHandler
+      direction={Directions.RIGHT}
+      onActivated={() =>
+        selectedSlot < max - 1 && setSelectedSlot(old => old + 1)
+      }>
+      <FlingGestureHandler
+        direction={Directions.LEFT}
+        onActivated={() => selectedSlot > 0 && setSelectedSlot(old => old - 1)}>
+        <Animated.View
+          style={[
+            styles.container,
+            {
+              opacity: opacityRef,
+              transform: [{translateY}],
+            },
+          ]}>
+          <View style={styles.leftBody}>
+            {/* Title & Address */}
+            <View>
+              <Text style={styles.name}>{markers?.[state]?.name}</Text>
+              <Text numberOfLines={2} style={styles.address}>
+                {markers?.[state]?.address}
+              </Text>
+            </View>
+            {/* Slots & Cost */}
+            <View style={styles.rowCenter}>
+              <View
+                style={[
+                  styles.rowCenter,
+                  {
+                    marginRight: 28,
+                  },
+                ]}>
+                <Image
+                  source={images.car}
+                  style={[
+                    styles.icon,
+                    {
+                      tintColor: 'rgba(0,0,0,0.4)',
+                    },
+                  ]}
+                />
+                <Text>{`${markers?.[state]?.free} slot${
+                  markers?.[state]?.free !== 1 ? 's' : ''
+                }`}</Text>
+              </View>
+              <View style={styles.rowCenter}>
+                <Image source={images.dollar} style={styles.icon} />
+                <Text>{`${markers?.[state]?.costPerHour} / h`}</Text>
+              </View>
+            </View>
           </View>
-          <View style={styles.rowCenter}>
-            <Image source={images.dollar} style={styles.icon} />
-            <Text>{`${markers?.[state]?.costPerHour} / h`}</Text>
-          </View>
-        </View>
-      </View>
-      {/* Right Image */}
-      <Image source={markers?.[state]?.img} style={styles.image} />
-    </Animated.View>
+          {/* Right Image */}
+          <Image source={markers?.[state]?.img} style={styles.image} />
+        </Animated.View>
+      </FlingGestureHandler>
+    </FlingGestureHandler>
   );
 };
 
@@ -107,7 +118,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     elevation: 3,
     position: 'absolute',
-    bottom: 38,
+    bottom: 32,
     left: 24,
     backgroundColor: 'white',
     width: WIDTH - 48,

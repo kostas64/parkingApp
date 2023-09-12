@@ -9,8 +9,10 @@ const parking6 = require('./images/parking6.png');
 const dollar = require('./images/dollar.png');
 const freeSlot = require('./images/freeSlot.png');
 const car = require('./images/car.png');
+const carUp = require('./images/carUp.png');
 
 export default {
+  carUp,
   dollar,
   freeSlot,
   parking1,
