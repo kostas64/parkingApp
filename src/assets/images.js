@@ -10,8 +10,12 @@ const dollar = require('./images/dollar.png');
 const freeSlot = require('./images/freeSlot.png');
 const car = require('./images/car.png');
 const carUp = require('./images/carUp.png');
+const clock = require('./images/clock.png');
+const fullTime = require('./images/all.png');
 
 export default {
+  fullTime,
+  clock,
   carUp,
   dollar,
   freeSlot,
