@@ -20,25 +20,23 @@ const styles = StyleSheet.create({
   container: {
     width: 90,
     height: 90,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   box: {
-    position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.yellow,
-    width: 60,
-    height: 60,
+    width: 58,
+    height: 58,
+    top: 4,
+    left: (90 - 58 * 1.18) / 2,
     borderRadius: 20,
   },
   triangle: {
-    position: 'absolute',
     backgroundColor: colors.yellow,
-    alignSelf: 'center',
+    left: (90 - 30) / 2,
     width: 20,
     height: 20,
-    bottom: 11,
+    bottom: 14,
     transform: [{rotate: '45deg'}],
   },
   label: {
@@ -50,12 +48,12 @@ const styles = StyleSheet.create({
   yellowDot: {
     position: 'absolute',
     width: 12,
-    height: 8,
+    height: 6,
     backgroundColor: colors.yellow,
-    top: 80,
-    left: 39,
+    top: 66,
+    left: (90 - 22) / 2,
     borderRadius: 10,
-    opacity: 0.35,
+    opacity: 0.4,
   },
 });
 

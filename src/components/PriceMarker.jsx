@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Animated} from 'react-native';
 
 import {colors} from '../assets/colors';
+import {isAndroid} from '../assets/constants';
 
 const PriceMarker = ({opacity}) => {
   return (
@@ -37,6 +38,7 @@ const styles = StyleSheet.create({
     transform: [{rotate: '45deg'}],
   },
   label: {
+    top: isAndroid ? 2 : 0,
     fontFamily: 'Poppins-Medium',
     color: 'white',
     fontSize: 18,
