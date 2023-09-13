@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {View, StyleSheet, Image, Pressable, Text} from 'react-native';
 
@@ -7,22 +7,28 @@ import {colors} from '../assets/colors';
 import {WIDTH} from '../assets/constants';
 import {useNavigation} from '@react-navigation/native';
 
-const MapSearch = () => {
+const MapSearch = ({onItemPress}) => {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
+  const [address, setAddress] = useState('');
+
   const marginVertical = insets.bottom > 0 ? insets.bottom : 16;
 
   return (
     <Pressable
-      onPress={() => navigation.navigate('Search')}
+      onPress={() =>
+        navigation.navigate('Search', {
+          onItemPress,
+          setAddress,
+        })
+      }
       style={[styles.container, {marginVertical}]}>
       <View style={styles.rowCenter}>
         <Image source={images.search} style={styles.searchIcon} />
-        <Text style={styles.input}>{'Parking address...'}</Text>
+        <Text numberOfLines={1} style={styles.input}>
+          {address || 'Parking address...'}
+        </Text>
       </View>
-      <Pressable>
-        <Image source={images.close} style={styles.closeIcon} />
-      </Pressable>
     </Pressable>
   );
 };
@@ -58,7 +64,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     color: 'rgba(0,0,0,0.4)',
     fontSize: 18,
-    paddingLeft: 16,
+    paddingLeft: 8,
   },
 });
 

@@ -68,15 +68,7 @@ const Home = () => {
     });
 
     //Animate map to new selection
-    mapRef.current?.animateToRegion(
-      {
-        latitude: markers?.[index]?.latitude,
-        longitude: markers?.[index]?.longitude,
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005,
-      },
-      500,
-    );
+    animateMapCoords(markers?.[index]?.latitude, markers?.[index]?.longitude);
 
     //Animate icon selected
     Animated.timing(opacityBlackRefs.current?.[index], {
@@ -95,6 +87,24 @@ const Home = () => {
       stiffness: 120,
       useNativeDriver: true,
     }).start();
+  };
+
+  const animateMapCoords = (
+    latitude,
+    longitude,
+    latitudeDelta = 0.005,
+    longitudeDelta = 0.005,
+    duration = 500,
+  ) => {
+    mapRef.current?.animateToRegion(
+      {
+        latitude,
+        longitude,
+        latitudeDelta,
+        longitudeDelta,
+      },
+      duration,
+    );
   };
 
   const onCloseBottomSheet = useCallback(() => {
@@ -164,7 +174,7 @@ const Home = () => {
           setSelectedSlot={setSelectedSlot}
         />
       </View>
-      <MapSearch />
+      <MapSearch onItemPress={animateMapCoords} />
       <CustomBottomSheet
         ref={bottomSheetRef}
         snapPoints={snapPoints}
