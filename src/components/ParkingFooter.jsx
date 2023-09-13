@@ -4,7 +4,9 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 import {colors} from '../assets/colors';
 
-const ParkingFooter = ({price, methodSelected}) => {
+const ParkingFooter = ({price, canPay, methodSelected}) => {
+  if (!canPay) return;
+
   const insets = useSafeAreaInsets();
   const isDisabled = !methodSelected || !price;
   const amount = isDisabled ? 0 : price;

@@ -8,6 +8,7 @@ export const markers = [
     address: 'Sofouli 65, Marousi, Athens',
     free: 14,
     costPerHour: 3,
+    private: true,
   },
   {
     index: 1,
@@ -18,6 +19,7 @@ export const markers = [
     address: 'Doiranis 120, Marousi, Athens',
     free: 34,
     costPerHour: 4.5,
+    private: true,
   },
   {
     index: 2,
@@ -28,6 +30,7 @@ export const markers = [
     address: 'Euripidou 99, Marousi, Athens',
     free: 8,
     costPerHour: 2.8,
+    private: false,
   },
   {
     index: 3,
@@ -38,6 +41,7 @@ export const markers = [
     address: 'Metaxa 200, Marousi, Athens',
     free: 29,
     costPerHour: 2.5,
+    private: false,
   },
   {
     index: 4,
@@ -48,6 +52,7 @@ export const markers = [
     address: 'Louki Akrita, Marousi, Athens',
     free: 2,
     costPerHour: 3.5,
+    private: true,
   },
   {
     index: 5,
@@ -58,5 +63,6 @@ export const markers = [
     address: 'Voriou Ipiros, Marousi, Athens',
     free: 11,
     costPerHour: 3.2,
+    private: false,
   },
 ];

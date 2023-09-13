@@ -31,6 +31,7 @@ const ParkingModal = ({item}) => {
   const minsRemaining = Math.floor((timeDifference % HOURS) / MINS);
   const costPerHour = `$${item?.costPerHour?.toFixed(2)}/h`;
   const freeSlots = `${item?.free} slot${item?.free !== 1 ? 's' : ''}`;
+  const isOpen = item?.private || (endDay - now) / (1000 * 60) > 0;
 
   return (
     <BottomSheetScrollView showsVerticalScrollIndicator={false}>
@@ -70,6 +71,8 @@ const ParkingModal = ({item}) => {
 
         {/* Choices */}
         <ParkingChoices
+          isOpen={isOpen}
+          isPrivate={item?.private}
           pricePerMinute={item?.costPerHour / 60}
           setPrice={setPrice}
           methodSelected={methodSelected}
@@ -79,7 +82,11 @@ const ParkingModal = ({item}) => {
         />
       </View>
       {/* Footer - Price - Button */}
-      <ParkingFooter price={price} methodSelected={methodSelected} />
+      <ParkingFooter
+        price={price}
+        canPay={isOpen}
+        methodSelected={methodSelected}
+      />
     </BottomSheetScrollView>
   );
 };

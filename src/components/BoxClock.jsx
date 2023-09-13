@@ -10,6 +10,7 @@ const BoxClock = ({
   hours,
   mins,
   setPrice,
+  isPrivate,
   pricePerMinute,
   methodSelected,
   setMethodSelected,
@@ -24,15 +25,16 @@ const BoxClock = ({
     //Calculate cose
     const minutesCost = date.getMinutes() * pricePerMinute;
     const hoursCost = date.getHours() * 60 * pricePerMinute;
+
     setPrice(minutesCost + hoursCost);
 
     //Update state time && Method selection
     setDate(date);
-    methodSelected !== 'perHour' && setMethodSelected('perHour');
+    !isSelected && setMethodSelected('perHour');
   };
 
   useEffect(() => {
-    if (methodSelected === 'perHour') {
+    if (isSelected && !isPrivate) {
       const minsCost = pricePerMinute * date.getMinutes();
       const hoursCost = pricePerMinute * date.getHours();
 
@@ -54,6 +56,7 @@ const BoxClock = ({
         style={styles.timePicker}
         androidVariant="iosClone"
         onDateChange={onDateChange}
+        textColor={'black'}
         maximumDate={new Date(new Date().setHours(hours, mins, 0))}
       />
     </TouchableOpacity>
