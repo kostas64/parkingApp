@@ -16,8 +16,14 @@ const chevron = require('./images/chevron.png');
 const trash = require('./images/trash.png');
 const plus = require('./images/plus.png');
 const plate = require('./images/plate.png');
+const parking = require('./images/parking.png');
+const wallet = require('./images/wallet.png');
+const history = require('./images/history.png');
 
 export default {
+  parking,
+  wallet,
+  history,
   plate,
   plus,
   trash,
