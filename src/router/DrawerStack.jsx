@@ -49,6 +49,7 @@ const DrawerStack = () => {
   const screenOptions = {
     headerShown: false,
     drawerType: 'slide',
+    swipeEdgeWidth: 0,
     overlayColor: 'transparent',
     sceneContainerStyle: styles.sceneContainerStyle,
     drawerStyle: styles.drawerStyle,
