@@ -12,8 +12,12 @@ const car = require('./images/car.png');
 const carUp = require('./images/carUp.png');
 const clock = require('./images/clock.png');
 const fullTime = require('./images/all.png');
+const chevron = require('./images/chevron.png');
+const trash = require('./images/trash.png');
 
 export default {
+  trash,
+  chevron,
   fullTime,
   clock,
   carUp,

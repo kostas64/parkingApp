@@ -1,15 +1,19 @@
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 
 import images from '../assets/images';
 import {colors} from '../assets/colors';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const CarPlate = () => {
+  const navigation = useNavigation();
   const insets = useSafeAreaInsets();
 
   return (
-    <TouchableOpacity style={[styles.container, {top: insets.top + 8}]}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('MyCar')}
+      style={[styles.container, {top: insets.top + 8}]}>
       <View style={styles.imageContainer}>
         <Image source={images.carUp} style={styles.car} />
       </View>
