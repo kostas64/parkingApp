@@ -18,23 +18,23 @@ const MyCarLabel = ({plate}) => {
       <Text
         style={[
           styles.plate,
-          {width: 40, paddingRight: 8, textAlign: 'center'},
+          {width: 50, paddingRight: 8, textAlign: 'center'},
         ]}>
-        Add car
+        Add plate
       </Text>
       <Image source={images.plus} style={styles.plus} />
     </View>
   );
 };
 
-const CarPlate = () => {
+const VehiclePlate = () => {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const {selectedPlate} = useContext(CarContext);
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('MyCar')}
+      onPress={() => navigation.navigate('MyVehicles')}
       style={[styles.container, {top: insets.top + 8}]}>
       <View style={styles.imageContainer}>
         <Image source={images.carUp} style={styles.car} />
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CarPlate;
+export default VehiclePlate;

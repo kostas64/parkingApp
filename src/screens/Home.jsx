@@ -6,11 +6,11 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {markers} from '../assets/markers';
 import {HEIGHT} from '../assets/constants';
 import {mapStyle} from '../assets/mapStyle';
-import CarPlate from '../components/CarPlate';
 import MapSearch from '../components/MapSearch';
 import MenuButton from '../components/MenuButton';
 import PriceMarker from '../components/PriceMarker';
 import HomeLoading from '../components/HomeLoading';
+import VehiclePlate from '../components/VehiclePlate';
 import ActiveMarker from '../components/ActiveMarker';
 import ParkingModal from '../components/ParkingModal';
 import MapParkingCard from '../components/MapParkingCard';
@@ -140,7 +140,7 @@ const Home = () => {
       <View
         style={[styles.mapContainer, {height: HEIGHT - 70 - marginVertical}]}>
         <MenuButton />
-        <CarPlate />
+        <VehiclePlate />
         <MapView
           ref={mapRef}
           moveOnMarkerPress={false}

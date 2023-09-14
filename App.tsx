@@ -1,11 +1,14 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
+import {MMKVLoader} from 'react-native-mmkv-storage';
 import {NavigationContainer} from '@react-navigation/native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 import HomeStack from './src/router/HomeStack';
 import CarContextProvider from './src/context/CarContext';
 import StatusBarManager from './src/components/StatusBarManager';
+
+export const storage = new MMKVLoader().initialize();
 
 const App = () => {
   return (

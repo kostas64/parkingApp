@@ -2,9 +2,9 @@ import React from 'react';
 import {TransitionPresets, createStackNavigator} from '@react-navigation/stack';
 
 import Home from '../screens/Home';
-import MyCar from '../screens/MyCar';
 import Search from '../screens/Search';
 import {isAndroid} from '../assets/constants';
+import MyVehicles from '../screens/MyVehicles';
 
 const Stack = createStackNavigator();
 
@@ -22,8 +22,8 @@ const HomeStack = () => {
       }}>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen
-        name="MyCar"
-        component={MyCar}
+        name="MyVehicles"
+        component={MyVehicles}
         options={{
           ...TransitionPresets.SlideFromRightIOS,
         }}
