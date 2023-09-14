@@ -30,7 +30,9 @@ const MyCarLabel = ({plate}) => {
 const VehiclePlate = () => {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
-  const {selectedPlate} = useContext(CarContext);
+  const {plates} = useContext(CarContext);
+
+  const selectedPlate = plates.filter(plate => plate.selected)?.[0]?.value;
 
   return (
     <TouchableOpacity

@@ -1,7 +1,8 @@
 import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
+import Button from './Button';
 import {colors} from '../assets/colors';
 
 const ParkingFooter = ({price, canPay, methodSelected}) => {
@@ -15,11 +16,7 @@ const ParkingFooter = ({price, canPay, methodSelected}) => {
   return (
     <View style={[styles.container, {marginBottom}]}>
       <Text style={styles.price}>{`$${amount?.toFixed(2)}`}</Text>
-      <TouchableOpacity
-        disabled={isDisabled}
-        style={[styles.buttonContainer, {opacity: isDisabled ? 0.4 : 1}]}>
-        <Text style={styles.pay}>Pay</Text>
-      </TouchableOpacity>
+      <Button label={'Pay'} isDisabled={isDisabled} />
     </View>
   );
 };

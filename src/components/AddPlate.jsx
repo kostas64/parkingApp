@@ -5,10 +5,10 @@ import images from '../assets/images';
 import {colors} from '../assets/colors';
 import {isAndroid} from '../assets/constants';
 
-const AddPlate = () => {
+const AddPlate = ({onPress}) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.touchable}>
+      <TouchableOpacity onPress={onPress} style={styles.touchable}>
         <Image source={images.plate} style={styles.backPlate} />
         <View style={styles.frontPlateContainer}>
           <Image source={images.plate} style={styles.frontPlate} />
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   },
   frontPlateContainer: {
     position: 'absolute',
+    zIndex: 10,
     transform: [{rotate: '-9deg'}],
   },
   frontPlate: {
