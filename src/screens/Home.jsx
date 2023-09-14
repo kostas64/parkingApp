@@ -10,6 +10,7 @@ import CarPlate from '../components/CarPlate';
 import MapSearch from '../components/MapSearch';
 import MenuButton from '../components/MenuButton';
 import PriceMarker from '../components/PriceMarker';
+import HomeLoading from '../components/HomeLoading';
 import ActiveMarker from '../components/ActiveMarker';
 import ParkingModal from '../components/ParkingModal';
 import MapParkingCard from '../components/MapParkingCard';
@@ -39,11 +40,18 @@ const Home = () => {
   );
 
   const insets = useSafeAreaInsets();
+  const [loadingMap, setLoadingMap] = useState(true);
   const [selectedSlot, setSelectedSlot] = useState(0);
   const [modalContent, setModalContent] = useState(null);
 
   const marginVertical = insets.bottom > 0 ? insets.bottom : 16;
   const snapPoints = ((HEIGHT - insets.top) / HEIGHT) * 100;
+
+  const onMapReady = () => {
+    setTimeout(() => {
+      setLoadingMap(false);
+    }, 800);
+  };
 
   const startAnimation = index => {
     //Check for already selected slots
@@ -128,6 +136,7 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
+      <HomeLoading show={loadingMap} />
       <View
         style={[styles.mapContainer, {height: HEIGHT - 70 - marginVertical}]}>
         <MenuButton />
@@ -139,7 +148,8 @@ const Home = () => {
           customMapStyle={mapStyle}
           initialRegion={initialRegion}
           maxZoomLevel={17}
-          minZoomLevel={15}
+          minZoomLevel={12}
+          onMapReady={onMapReady}
           style={styles.mapStyle}>
           {markers.map((marker, index) => {
             return (

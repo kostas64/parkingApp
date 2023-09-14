@@ -1,14 +1,36 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 
 import images from '../assets/images';
 import {colors} from '../assets/colors';
+import {CarContext} from '../context/CarContext';
+
+const MyCarLabel = ({plate}) => {
+  return !!plate ? (
+    <>
+      <Text style={styles.myCarLabel}>My car</Text>
+      <Text style={styles.plate}>{plate}</Text>
+    </>
+  ) : (
+    <View style={{flexDirection: 'row'}}>
+      <Text
+        style={[
+          styles.plate,
+          {width: 40, paddingRight: 8, textAlign: 'center'},
+        ]}>
+        Add car
+      </Text>
+      <Image source={images.plus} style={styles.plus} />
+    </View>
+  );
+};
 
 const CarPlate = () => {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
+  const {selectedPlate} = useContext(CarContext);
 
   return (
     <TouchableOpacity
@@ -18,8 +40,7 @@ const CarPlate = () => {
         <Image source={images.carUp} style={styles.car} />
       </View>
       <View style={styles.labelsContainer}>
-        <Text style={styles.myCarLabel}>My car</Text>
-        <Text style={styles.plate}>NKY-3148</Text>
+        <MyCarLabel plate={selectedPlate} />
       </View>
     </TouchableOpacity>
   );
@@ -64,6 +85,12 @@ const styles = StyleSheet.create({
   },
   plate: {
     fontFamily: 'Poppins-SemiBold',
+  },
+  plus: {
+    width: 12,
+    height: 12,
+    alignSelf: 'center',
+    marginTop: 4,
   },
 });
 

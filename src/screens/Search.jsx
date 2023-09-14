@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+
 import {colors} from '../assets/colors';
 
 const Search = ({route, navigation}) => {
@@ -9,7 +10,7 @@ const Search = ({route, navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Search parking around</Text>
+      <Text style={styles.title}>Search parking slots around</Text>
 
       <GooglePlacesAutocomplete
         styles={{

@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 import HomeStack from './src/router/HomeStack';
+import CarContextProvider from './src/context/CarContext';
 import StatusBarManager from './src/components/StatusBarManager';
 
 const App = () => {
@@ -11,7 +12,9 @@ const App = () => {
     <GestureHandlerRootView style={styles.flex}>
       <NavigationContainer>
         <StatusBarManager>
-          <HomeStack />
+          <CarContextProvider>
+            <HomeStack />
+          </CarContextProvider>
         </StatusBarManager>
       </NavigationContainer>
     </GestureHandlerRootView>

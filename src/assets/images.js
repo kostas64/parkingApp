@@ -14,8 +14,10 @@ const clock = require('./images/clock.png');
 const fullTime = require('./images/all.png');
 const chevron = require('./images/chevron.png');
 const trash = require('./images/trash.png');
+const plus = require('./images/plus.png');
 
 export default {
+  plus,
   trash,
   chevron,
   fullTime,
