@@ -13,6 +13,7 @@ import HomeLoading from '../components/HomeLoading';
 import VehiclePlate from '../components/VehiclePlate';
 import ActiveMarker from '../components/ActiveMarker';
 import ParkingModal from '../components/ParkingModal';
+import useAnimatedHome from '../hooks/useAnimatedHome';
 import MapParkingCard from '../components/MapParkingCard';
 import CustomBottomSheet from '../components/CustomBottomSheet';
 
@@ -40,6 +41,7 @@ const Home = () => {
   );
 
   const insets = useSafeAreaInsets();
+  const {animatedStyles, Comp} = useAnimatedHome();
   const [loadingMap, setLoadingMap] = useState(true);
   const [selectedSlot, setSelectedSlot] = useState(0);
   const [modalContent, setModalContent] = useState(null);
@@ -135,7 +137,7 @@ const Home = () => {
   }, [modalContent]);
 
   return (
-    <View style={styles.container}>
+    <Comp style={[styles.container, animatedStyles]}>
       <HomeLoading show={loadingMap} />
       <View
         style={[styles.mapContainer, {height: HEIGHT - 70 - marginVertical}]}>
@@ -191,7 +193,7 @@ const Home = () => {
         modalContent={modalContent}
         onCloseBottomSheet={onCloseBottomSheet}
       />
-    </View>
+    </Comp>
   );
 };
 
@@ -202,15 +204,14 @@ const styles = StyleSheet.create({
   },
   mapContainer: {
     alignSelf: 'center',
-    borderBottomLeftRadius: 48,
-    borderBottomRightRadius: 48,
+    borderRadius: 36,
     overflow: 'hidden',
     width: '100%',
   },
   mapStyle: {
     height: '110%',
     width: '100%',
-    borderRadius: 48,
+    borderRadius: 36,
   },
   activaMarkerContainer: {
     position: 'absolute',
