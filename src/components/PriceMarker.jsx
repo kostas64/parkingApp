@@ -36,6 +36,13 @@ const styles = StyleSheet.create({
     height: 8,
     bottom: 18,
     transform: [{rotate: '45deg'}],
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 5,
   },
   label: {
     top: isAndroid ? 2 : 0,

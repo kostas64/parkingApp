@@ -1,22 +1,19 @@
 import React, {useContext, useRef} from 'react';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 import images from '../assets/images';
 import {colors} from '../assets/colors';
+import {WIDTH} from '../assets/constants';
+import Header from '../components/Header';
 import Checkbox from '../components/Checkbox';
 import AddPlate from '../components/AddPlate';
 import {CarContext} from '../context/CarContext';
-import {WIDTH, isAndroid} from '../assets/constants';
 import AnimatedModal from '../components/AnimatedModal';
 import InsertPlateModal from '../components/InsertPlateModal';
 
 const MyVehicles = ({navigation}) => {
   const modalRef = useRef();
-
-  const insets = useSafeAreaInsets();
   const {plates, setPlates} = useContext(CarContext);
-  const marginTop = insets.top > 0 ? insets.top + 8 : 24;
 
   const onPressSelect = index => {
     setPlates([
@@ -59,21 +56,13 @@ const MyVehicles = ({navigation}) => {
     <>
       <View style={styles.container}>
         {/* Header */}
-        <View style={[styles.header, {marginTop}]}>
-          <TouchableOpacity
-            onPress={() => navigation.pop()}
-            hitSlop={styles.hitSlop}>
-            <Image source={images.chevron} style={styles.chevron} />
-          </TouchableOpacity>
-          <View style={styles.labelsContainer}>
-            <Text style={styles.myCarLabel}>My vehicles</Text>
-          </View>
-          <TouchableOpacity
-            onPress={() => modalRef.current?.animateModal()}
-            style={styles.add}>
-            <Image source={images.plus} style={styles.cross} />
-          </TouchableOpacity>
-        </View>
+        <Header
+          label={'My vehicles'}
+          leftIcon={images.chevron}
+          onPressLeft={() => navigation.pop()}
+          onPressRight={() => modalRef.current?.animateModal()}
+          rightIcon={images.plus}
+        />
 
         {/* List */}
         <View style={styles.listContainer}>
@@ -113,45 +102,9 @@ const MyVehicles = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  add: {
-    backgroundColor: colors.yellow,
-    padding: 8,
-    borderRadius: 12,
-  },
-  cross: {
-    width: 12,
-    height: 12,
-    tintColor: colors.lightBlack,
-  },
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingHorizontal: 24,
-  },
-  chevron: {
-    tintColor: colors.lightBlack,
-    width: 20,
-    height: 20,
-  },
-  labelsContainer: {
-    flex: 1,
-    alignItems: 'center',
-    top: isAndroid ? 2 : 0,
-  },
-  myCarLabel: {
-    fontSize: 18,
-    fontFamily: 'Poppins-SemiBold',
-    color: colors.lightBlack,
-  },
-  hitSlop: {
-    top: 20,
-    left: 20,
-    right: 12,
-    bottom: 12,
   },
   listContainer: {
     marginTop: 16,

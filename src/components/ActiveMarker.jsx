@@ -11,7 +11,7 @@ const ActiveMarker = ({opacity, scale}) => {
         <Text style={styles.label}>P</Text>
       </View>
       <View style={styles.triangle} />
-      <View style={styles.yellowDot} />
+      {isAndroid && <View style={styles.yellowDot} />}
     </Animated.View>
   );
 };
@@ -38,6 +38,13 @@ const styles = StyleSheet.create({
     height: 20,
     bottom: 14,
     transform: [{rotate: '45deg'}],
+    shadowColor: colors.yellow,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 10,
   },
   label: {
     top: isAndroid ? 2 : 1,
