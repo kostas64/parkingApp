@@ -41,7 +41,7 @@ const Home = () => {
   );
 
   const insets = useSafeAreaInsets();
-  const {animatedStyles, Comp} = useAnimatedHome();
+  const {animatedStyles, animatedRadiusStyles, Comp} = useAnimatedHome();
   const [loadingMap, setLoadingMap] = useState(true);
   const [selectedSlot, setSelectedSlot] = useState(0);
   const [modalContent, setModalContent] = useState(null);
@@ -139,8 +139,12 @@ const Home = () => {
   return (
     <Comp style={[styles.container, animatedStyles]}>
       <HomeLoading show={loadingMap} />
-      <View
-        style={[styles.mapContainer, {height: HEIGHT - 70 - marginVertical}]}>
+      <Comp
+        style={[
+          styles.mapContainer,
+          animatedRadiusStyles,
+          {height: HEIGHT - 70 - marginVertical},
+        ]}>
         <MenuButton />
         <VehiclePlate />
         <MapView
@@ -185,7 +189,7 @@ const Home = () => {
           selectedSlot={selectedSlot}
           setSelectedSlot={setSelectedSlot}
         />
-      </View>
+      </Comp>
       <MapSearch onItemPress={animateMapCoords} />
       <CustomBottomSheet
         ref={bottomSheetRef}

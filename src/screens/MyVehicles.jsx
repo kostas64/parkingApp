@@ -1,5 +1,12 @@
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import React, {useContext, useRef} from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 import images from '../assets/images';
 import {colors} from '../assets/colors';
@@ -52,6 +59,8 @@ const MyVehicles = ({navigation}) => {
     setPlates(filtered);
   };
 
+  const ListWrapper = plates?.length > 0 ? ScrollView : View;
+
   return (
     <>
       <View style={styles.container}>
@@ -65,10 +74,9 @@ const MyVehicles = ({navigation}) => {
         />
 
         {/* List */}
-        <View style={styles.listContainer}>
+        <ListWrapper>
           {plates?.map((car, index) => (
             <React.Fragment key={index}>
-              {index === 0 && <View style={styles.hr} />}
               <View style={styles.itemContainer}>
                 <TouchableOpacity
                   onPress={() => onPressSelect(index)}
@@ -82,10 +90,10 @@ const MyVehicles = ({navigation}) => {
                   <Image source={images.trash} style={styles.trash} />
                 </TouchableOpacity>
               </View>
-              <View style={styles.hr} />
+              {<View style={styles.hr} />}
             </React.Fragment>
           ))}
-        </View>
+        </ListWrapper>
         {/* Insert Modal */}
         {(!plates || plates?.length === 0) && (
           <AddPlate onPress={() => modalRef.current?.animateModal()} />
@@ -106,12 +114,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  listContainer: {
-    marginTop: 16,
-  },
   itemContainer: {
+    top: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingHorizontal: 24,
   },
   touchable: {
     flexDirection: 'row',
@@ -130,9 +137,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   hr: {
-    height: 1,
+    height: 2,
     width: '100%',
-    backgroundColor: colors.lightBlack,
+    backgroundColor: colors.yellow,
   },
 });
 

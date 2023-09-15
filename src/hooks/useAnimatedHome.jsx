@@ -19,7 +19,22 @@ const useAnimatedHome = () => {
     };
   });
 
-  return {animatedStyles, Comp: Animated.View};
+  const animatedRadiusStyles = useAnimatedStyle(() => {
+    const borderRadius = interpolate(
+      drawerProgress.value,
+      [0, 1],
+      [isAndroid ? 0 : 36, isAndroid ? 36 : 46],
+    );
+
+    return {
+      borderBottomLeftRadius: 36,
+      borderBottomLeftRadius: 36,
+      borderTopLeftRadius: borderRadius,
+      borderTopRightRadius: borderRadius,
+    };
+  });
+
+  return {animatedStyles, animatedRadiusStyles, Comp: Animated.View};
 };
 
 export default useAnimatedHome;
