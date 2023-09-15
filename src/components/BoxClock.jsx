@@ -36,11 +36,11 @@ const BoxClock = ({
   useEffect(() => {
     if (isSelected && !isPrivate) {
       const minsCost = pricePerMinute * date.getMinutes();
-      const hoursCost = pricePerMinute * date.getHours();
+      const hoursCost = pricePerMinute * 60 * date.getHours();
 
       setPrice(minsCost + hoursCost);
     }
-  }, [methodSelected]);
+  }, [date, methodSelected]);
 
   return (
     <TouchableOpacity

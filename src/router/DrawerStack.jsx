@@ -43,7 +43,7 @@ const CustomDrawerContent = ({navigation}) => {
           onPress={() => navigation.navigate('PaymentMethods')}
         />
         <CustomDrawerItem
-          label="Vehicle plates"
+          label="My Vehicles"
           icon="platesIcon"
           onPress={() => navigation.navigate('MyVehicles')}
         />
@@ -104,6 +104,8 @@ const styles = StyleSheet.create({
     left: 8,
   },
   marginBottom: {
+    marginTop: 8,
+    marginLeft: 8,
     marginBottom: 32,
   },
   drawerScroll: {
@@ -127,8 +129,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   icon: {
-    width: 24,
-    height: 24,
+    width: 22,
+    height: 22,
     tintColor: colors.lightBlack,
   },
 });
