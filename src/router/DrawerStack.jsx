@@ -11,9 +11,9 @@ import {colors} from '../assets/colors';
 
 const Drawer = createDrawerNavigator();
 
-const CustomDrawerItem = ({label, icon}) => {
+const CustomDrawerItem = ({label, icon, onPress}) => {
   return (
-    <TouchableOpacity style={styles.drawerItemContainer}>
+    <TouchableOpacity onPress={onPress} style={styles.drawerItemContainer}>
       <Image source={images[icon]} style={styles.icon} />
       <Text style={styles.drawerItemLabel}>{label}</Text>
     </TouchableOpacity>
@@ -32,14 +32,27 @@ const CustomDrawerContent = ({navigation}) => {
           <Image source={images.close} style={styles.icon} />
         </TouchableOpacity>
 
-        <CustomDrawerItem label="Park" icon="parking" />
-        <CustomDrawerItem label="Payment Methods" icon="wallet" />
-        <CustomDrawerItem label="History" icon="history" />
+        <CustomDrawerItem
+          label="Park"
+          icon="parking"
+          onPress={() => navigation.navigate('Home')}
+        />
+        <CustomDrawerItem
+          label="Payment Methods"
+          icon="wallet"
+          onPress={() => navigation.navigate('PaymentMethods')}
+        />
+        <CustomDrawerItem
+          label="Vehicle plates"
+          icon="platesIcon"
+          onPress={() => navigation.navigate('MyVehicles')}
+        />
+        <CustomDrawerItem
+          label="History"
+          icon="history"
+          onPress={() => navigation.navigate('History')}
+        />
         <View style={styles.hr} />
-        <Text style={styles.implementedWith}>Implemented with:</Text>
-        <Text style={[styles.implementedWith, {paddingTop: 0}]}>
-          Reanimated
-        </Text>
       </View>
     </DrawerContentScrollView>
   );
@@ -89,13 +102,6 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: colors.lightBlack,
     left: 8,
-  },
-  implementedWith: {
-    paddingLeft: 8,
-    paddingVertical: 16,
-    color: colors.lightBlack,
-    fontSize: 18,
-    fontWeight: '500',
   },
   marginBottom: {
     marginBottom: 32,

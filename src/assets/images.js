@@ -19,8 +19,10 @@ const plate = require('./images/plate.png');
 const parking = require('./images/parking.png');
 const wallet = require('./images/wallet.png');
 const history = require('./images/history.png');
+const platesIcon = require('./images/plates-icon.png');
 
 export default {
+  platesIcon,
   parking,
   wallet,
   history,
