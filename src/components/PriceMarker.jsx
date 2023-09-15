@@ -7,8 +7,8 @@ import {isAndroid} from '../assets/constants';
 const PriceMarker = ({opacity, price}) => {
   return (
     <Animated.View style={[styles.container, {opacity}]}>
-      <View style={styles.box} />
       <View style={styles.triangle} />
+      <View style={styles.box} />
       <Text style={styles.label}>{`$${price?.toFixed(1)}`}</Text>
     </Animated.View>
   );
