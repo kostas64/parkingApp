@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 import {colors} from '../assets/colors';
+import {isAndroid} from '../assets/constants';
 
 const Button = ({onPress, isDisabled, label, containerStyle}) => {
   return (
@@ -27,6 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   pay: {
+    top: isAndroid ? 2 : 0,
     fontFamily: 'Poppins-SemiBold',
     fontSize: 20,
   },
