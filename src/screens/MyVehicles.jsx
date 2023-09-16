@@ -6,7 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import React, {useContext, useRef} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 
 import images from '../assets/images';
 import {colors} from '../assets/colors';
@@ -17,10 +17,31 @@ import AddPlate from '../components/AddPlate';
 import {CarContext} from '../context/CarContext';
 import AnimatedModal from '../components/AnimatedModal';
 import InsertPlateModal from '../components/InsertPlateModal';
+import DeletePlateModal from '../components/DeletePlateModal';
 
 const MyVehicles = ({navigation}) => {
   const modalRef = useRef();
   const {plates, setPlates} = useContext(CarContext);
+  const [modalContent, setModalContent] = useState(null);
+
+  const setModal = (type, plate) => {
+    if (type === 'delete') {
+      setModalContent(
+        <DeletePlateModal
+          plate={plate}
+          onPressDelete={() => {
+            onPressDelete(plate);
+            modalRef?.current?.closeModal();
+          }}
+          onPressCancel={() => modalRef?.current?.closeModal()}
+        />,
+      );
+      modalRef.current?.animateModal();
+    } else if (type === 'insert') {
+      setModalContent(<InsertPlateModal onPress={onPressInsert} />);
+      modalRef.current?.animateModal();
+    }
+  };
 
   const onPressSelect = index => {
     setPlates([
@@ -69,7 +90,7 @@ const MyVehicles = ({navigation}) => {
           label={'My vehicles'}
           leftIcon={images.chevron}
           onPressLeft={() => navigation.pop()}
-          onPressRight={() => modalRef.current?.animateModal()}
+          onPressRight={() => setModal('insert')}
           rightIcon={images.plus}
         />
 
@@ -85,7 +106,7 @@ const MyVehicles = ({navigation}) => {
                   <Text style={styles.carPlate}>{car.value}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  onPress={() => onPressDelete(car)}
+                  onPress={() => setModal('delete', car)}
                   style={{alignSelf: 'center'}}>
                   <Image source={images.trash} style={styles.trash} />
                 </TouchableOpacity>
@@ -96,15 +117,12 @@ const MyVehicles = ({navigation}) => {
         </ListWrapper>
         {/* Insert Modal */}
         {(!plates || plates?.length === 0) && (
-          <AddPlate onPress={() => modalRef.current?.animateModal()} />
+          <AddPlate onPress={() => setModal('insert')} />
         )}
       </View>
 
       {/* Animated Modal */}
-      <AnimatedModal
-        ref={modalRef}
-        content={<InsertPlateModal onPress={onPressInsert} />}
-      />
+      <AnimatedModal ref={modalRef} content={modalContent} />
     </>
   );
 };

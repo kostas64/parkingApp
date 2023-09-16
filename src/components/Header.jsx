@@ -53,6 +53,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingBottom: 16,
     backgroundColor: colors.yellow,
+    borderBottomColor: colors.lightBlack,
+    borderBottomWidth: 1,
   },
   hitSlop: {
     top: 20,

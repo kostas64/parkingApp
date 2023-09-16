@@ -47,7 +47,7 @@ const AnimatedBootsplash = ({onAnimationEnd}) => {
 
     Animated.timing(opacity, {
       toValue: 0,
-      duration: 150,
+      duration: 200,
       delay: 350,
       useNativeDriver: true,
     }).start(() => {

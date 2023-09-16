@@ -24,6 +24,8 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     borderRadius: 16,
     padding: 16,
+    elevation: 5,
+    marginBottom: 8,
   },
   label: {
     fontSize: 18,

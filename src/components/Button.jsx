@@ -3,12 +3,16 @@ import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 import {colors} from '../assets/colors';
 
-const Button = ({onPress, isDisabled, label}) => {
+const Button = ({onPress, isDisabled, label, containerStyle}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
       disabled={isDisabled}
-      style={[styles.buttonContainer, {opacity: isDisabled ? 0.4 : 1}]}>
+      style={[
+        styles.buttonContainer,
+        containerStyle,
+        {opacity: isDisabled ? 0.4 : 1},
+      ]}>
       <Text style={styles.pay}>{label}</Text>
     </TouchableOpacity>
   );
@@ -18,7 +22,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     borderRadius: 24,
     backgroundColor: colors.yellow,
-    paddingVertical: 16,
+    paddingVertical: 14,
     width: 190,
     alignItems: 'center',
   },

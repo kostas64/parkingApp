@@ -207,6 +207,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   mapContainer: {
+    flex: 1,
     alignSelf: 'center',
     borderRadius: 36,
     overflow: 'hidden',
