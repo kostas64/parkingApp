@@ -13,6 +13,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1C33BF0E293A4A4985A235E3 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A029012269F544E3A00DD4FD /* Poppins-Medium.ttf */; };
+		701CD31A2AB4C222008262BB /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 701CD3192AB4C222008262BB /* BootSplash.storyboard */; };
 		7699B88040F8A987B510C191 /* libPods-ParkingApp-ParkingAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ParkingApp-ParkingAppTests.a */; };
 		7FF948534F724EBFA9F42058 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4D1058037F84C7D91461BF2 /* Poppins-Light.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -48,6 +49,7 @@
 		5709B34CF0A7D63546082F79 /* Pods-ParkingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkingApp.release.xcconfig"; path = "Target Support Files/Pods-ParkingApp/Pods-ParkingApp.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-ParkingApp-ParkingAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkingApp-ParkingAppTests.debug.xcconfig"; path = "Target Support Files/Pods-ParkingApp-ParkingAppTests/Pods-ParkingApp-ParkingAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-ParkingApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ParkingApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		701CD3192AB4C222008262BB /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = ParkingApp/BootSplash.storyboard; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ParkingApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-ParkingApp-ParkingAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkingApp-ParkingAppTests.release.xcconfig"; path = "Target Support Files/Pods-ParkingApp-ParkingAppTests/Pods-ParkingApp-ParkingAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		A029012269F544E3A00DD4FD /* Poppins-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Medium.ttf"; path = "../src/assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				701CD3192AB4C222008262BB /* BootSplash.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = ParkingApp;
@@ -268,6 +271,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				C57B0A30868F48EEB48B9842 /* Poppins-ExtraLight.ttf in Resources */,
+				701CD31A2AB4C222008262BB /* BootSplash.storyboard in Resources */,
 				7FF948534F724EBFA9F42058 /* Poppins-Light.ttf in Resources */,
 				1C33BF0E293A4A4985A235E3 /* Poppins-Medium.ttf in Resources */,
 				C0F3AF64C9614B6EA61E74D1 /* Poppins-Regular.ttf in Resources */,

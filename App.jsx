@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
+import BootSplash from 'react-native-bootsplash';
 import {MMKVLoader} from 'react-native-mmkv-storage';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
@@ -8,6 +9,7 @@ import {colors} from './src/assets/colors';
 import DrawerStack from './src/router/DrawerStack';
 import CarContextProvider from './src/context/CarContext';
 import StatusBarManager from './src/components/StatusBarManager';
+import AnimatedBootsplash from './src/components/AnimatedBootsplash';
 
 export const storage = new MMKVLoader().initialize();
 
@@ -20,12 +22,24 @@ const App = () => {
     },
   };
 
+  const [loaderPlayed, setLoaderPlayed] = useState(null);
+  const isLoaderFalse = loaderPlayed === false;
+
+  const hideSplash = () => {
+    BootSplash.hide().then(() => setLoaderPlayed(true));
+  };
+
   return (
     <GestureHandlerRootView style={styles.flex}>
-      <NavigationContainer theme={theme}>
+      <NavigationContainer theme={theme} onReady={hideSplash}>
         <StatusBarManager>
           <CarContextProvider>
-            <DrawerStack />
+            {!isLoaderFalse && (
+              <AnimatedBootsplash
+                onAnimationEnd={() => setLoaderPlayed(false)}
+              />
+            )}
+            {isLoaderFalse && <DrawerStack />}
           </CarContextProvider>
         </StatusBarManager>
       </NavigationContainer>

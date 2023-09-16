@@ -1,15 +1,28 @@
 package com.parkingapp;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
+import com.zoontek.rnbootsplash.RNBootSplash;
 
 public class MainActivity extends ReactActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    RNBootSplash.init(this, R.style.BootTheme);
     super.onCreate(null);
+
+    final Window win = getWindow();
+    win.getDecorView().setSystemUiVisibility(
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+     );
+     win.setStatusBarColor(Color.TRANSPARENT);
   }
 
   /**
