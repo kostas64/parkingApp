@@ -4,6 +4,7 @@ import {TransitionPresets, createStackNavigator} from '@react-navigation/stack';
 import Home from '../screens/Home';
 import Search from '../screens/Search';
 import History from '../screens/History';
+import AddCard from '../screens/AddCard';
 import {isAndroid} from '../assets/constants';
 import MyVehicles from '../screens/MyVehicles';
 import PaymentMethods from '../screens/PaymentMethods';
@@ -36,6 +37,11 @@ const HomeStack = () => {
       <Stack.Screen
         name="PaymentMethods"
         component={PaymentMethods}
+        options={SlideFromRightIOS}
+      />
+      <Stack.Screen
+        name="AddCard"
+        component={AddCard}
         options={SlideFromRightIOS}
       />
       <Stack.Screen
