@@ -21,8 +21,26 @@ const wallet = require('./images/wallet.png');
 const history = require('./images/history.png');
 const platesIcon = require('./images/plates-icon.png');
 const logo = require('./images/logo.png');
+const chip = require('./images/chip.png');
+const wifi = require('./images/wifi.png');
+const amex = require('./images/amex.png');
+const discover = require('./images/discover.png');
+const mastercard = require('./images/mastercard.png');
+const visa = require('./images/visa.png');
+const check = require('./images/check.png');
+const thumbsUp = require('./images/thumbsUp.png');
+const error = require('./images/error.png');
 
 export default {
+  error,
+  thumbsUp,
+  check,
+  amex,
+  discover,
+  mastercard,
+  visa,
+  wifi,
+  chip,
   logo,
   platesIcon,
   parking,
