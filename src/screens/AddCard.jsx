@@ -46,10 +46,11 @@ const AddCard = ({navigation}) => {
       tempState = tempState.slice(0, tempState.length - 1);
     }
 
-    tempState.length <= 7 && getCardType(tempState, setCardType);
+    tempState.length <= 7 && getCardType(tempState, cardType, setCardType);
 
     if (
-      value.length === 19 &&
+      ((value.length === 18 && cardType === 'amex') ||
+        (value.length === 19 && cardType !== 'amex')) &&
       isCardNumberValid(tempState, cardType, setCardType)
     ) {
       Animated.timing(translateX, {
@@ -127,12 +128,13 @@ const AddCard = ({navigation}) => {
     }
 
     setCredits([
-      ...credits,
       {
         cardNumber,
         expDate,
         ccv,
+        type: cardType,
       },
+      ...credits,
     ]);
 
     onClear();
@@ -218,10 +220,12 @@ const AddCard = ({navigation}) => {
               styles.textInput,
               {
                 borderBottomColor:
-                  cardNumber.length === 19 &&
+                  ((cardNumber.length === 18 && cardType === 'amex') ||
+                    (cardNumber.length === 19 && cardType !== 'amex')) &&
                   isCardNumberValid(cardNumber, cardType, setCardType)
                     ? 'green'
-                    : cardNumber.length === 19 &&
+                    : ((cardNumber.length === 18 && cardType === 'amex') ||
+                        (cardNumber.length === 19 && cardType !== 'amex')) &&
                       !isCardNumberValid(cardNumber, cardType, setCardType)
                     ? 'tomato'
                     : 'rgba(0,0,0,0.1)',

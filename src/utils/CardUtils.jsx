@@ -34,9 +34,9 @@ export const isCardNumberValid = (
   return isValid;
 };
 
-export const getCardType = (cardNumber, setCardType) => {
+export const getCardType = (cardNumber, cardType, setCardType) => {
   if (cardNumber.length >= 1 && cardNumber.startsWith('4')) {
-    setCardType('visa');
+    cardType !== 'visa' && setCardType('visa');
   } else if (
     (cardNumber.length >= 2 && cardNumber.startsWith('65')) ||
     (cardNumber.length >= 3 &&
@@ -45,7 +45,7 @@ export const getCardType = (cardNumber, setCardType) => {
       cardNumber.substring(0, 3) <= '649') ||
     (cardNumber.length >= 4 && cardNumber.startsWith('6011'))
   ) {
-    setCardType('discover');
+    cardType !== 'discover' && setCardType('discover');
   } else if (
     (cardNumber.length >= 2 &&
       cardNumber.substring(0, 2) >= '51' &&
@@ -56,12 +56,12 @@ export const getCardType = (cardNumber, setCardType) => {
       cardNumber.length >= 4 &&
       cardNumber.substring(0, 4) <= '2720')
   ) {
-    setCardType('mastercard');
+    cardType !== 'mastercard' && setCardType('mastercard');
   } else if (
     (cardNumber.length >= 2 && cardNumber.startsWith('34')) ||
     (cardNumber.length >= 2 && cardNumber.startsWith('37'))
   ) {
-    setCardType('amex');
+    cardType !== 'amex' && setCardType('amex');
   } else {
     setCardType(null);
   }

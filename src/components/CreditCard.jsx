@@ -54,8 +54,10 @@ const CreditCard = React.forwardRef(
     const formatInput = (input, type) => {
       // Pad the input with placeholders to maintain the original structure
       let formattedInput =
-        type === 'number'
+        type === 'number' && cardType !== 'amex'
           ? '●●●● ●●●● ●●●● ●●●●'
+          : type === 'number' && cardType === 'amex'
+          ? '●●●● ●●●● ●●●● ●●●'
           : type === 'exp'
           ? '●●/●●'
           : '●●●';
@@ -87,7 +89,7 @@ const CreditCard = React.forwardRef(
 
     useEffect(() => {
       handleInputChange(number, 'number');
-    }, [number]);
+    }, [number, cardType]);
 
     useEffect(() => {
       handleInputChange(expDate, 'exp');

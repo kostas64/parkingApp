@@ -25,7 +25,7 @@ const PaymentMethods = ({navigation}) => {
             <Text style={styles.expDate}>Expiration date</Text>
             <Text style={styles.expDateLabel}>{item.expDate}</Text>
           </View>
-          <Image source={images?.['visa']} style={styles.cardTypeIcon} />
+          <Image source={images?.[item.type]} style={styles.cardTypeIcon} />
         </View>
       </View>
     );
