@@ -32,7 +32,7 @@ const Header = ({
       <View style={styles.labelsContainer}>
         <Text style={styles.label}>{label}</Text>
       </View>
-      {!!rightIcon && !!onPressRight && (
+      {!!rightIcon && !!onPressRight ? (
         <TouchableOpacity
           onPress={onPressRight}
           style={[styles.rightContainer, rightIconContainerStyle]}>
@@ -41,6 +41,8 @@ const Header = ({
             style={[styles.rightIcon, rightIconStyle]}
           />
         </TouchableOpacity>
+      ) : (
+        <View style={{height: 28}} />
       )}
     </View>
   );
