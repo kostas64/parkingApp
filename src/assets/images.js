@@ -30,8 +30,10 @@ const visa = require('./images/visa.png');
 const check = require('./images/check.png');
 const thumbsUp = require('./images/thumbsUp.png');
 const error = require('./images/error.png');
+const qr = require('./images/qr-code.png');
 
 export default {
+  qr,
   error,
   thumbsUp,
   check,
