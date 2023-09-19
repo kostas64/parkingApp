@@ -5,7 +5,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Button from './Button';
 import {colors} from '../assets/colors';
 
-const ParkingFooter = ({price, canPay, methodSelected}) => {
+const ParkingFooter = ({price, canPay, onPress, methodSelected}) => {
   if (!canPay) return;
 
   const insets = useSafeAreaInsets();
@@ -16,7 +16,7 @@ const ParkingFooter = ({price, canPay, methodSelected}) => {
   return (
     <View style={[styles.container, {marginBottom}]}>
       <Text style={styles.price}>{`$${amount?.toFixed(2)}`}</Text>
-      <Button label={'Pay'} isDisabled={isDisabled} />
+      <Button label={'Pay'} isDisabled={isDisabled} onPress={onPress} />
     </View>
   );
 };

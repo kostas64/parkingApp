@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import MapView, {Marker} from 'react-native-maps';
+import {useNavigation} from '@react-navigation/native';
 import {BottomSheetScrollView} from '@gorhom/bottom-sheet';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
@@ -12,8 +13,15 @@ import ParkingFooter from './ParkingFooter';
 import ParkingChoices from './ParkingChoices';
 
 const ParkingModal = ({item}) => {
+  const navigation = useNavigation();
   const [price, setPrice] = useState(null);
   const [methodSelected, setMethodSelected] = useState(null);
+  const [timeSelection, setTimeSelection] = useState([
+    {
+      minutes: null,
+      hours: null,
+    },
+  ]);
 
   const initialRegion = {
     latitude: item?.latitude,
@@ -32,6 +40,19 @@ const ParkingModal = ({item}) => {
   const costPerHour = `$${item?.costPerHour?.toFixed(2)}/h`;
   const freeSlots = `${item?.free} slot${item?.free !== 1 ? 's' : ''}`;
   const isOpen = item?.private || (endDay - now) / (1000 * 60) > 0;
+  const fullDayFromPicker =
+    hoursRemaining === timeSelection?.hours &&
+    minsRemaining === timeSelection?.minutes;
+
+  const onPressPay = () => {
+    navigation.navigate('Confirmation', {
+      item,
+      price,
+      timeSelection,
+      methodSelected,
+      full: fullDayFromPicker,
+    });
+  };
 
   return (
     <BottomSheetScrollView showsVerticalScrollIndicator={false}>
@@ -75,6 +96,7 @@ const ParkingModal = ({item}) => {
           isPrivate={item?.private}
           pricePerMinute={item?.costPerHour / 60}
           setPrice={setPrice}
+          setTimeSelection={setTimeSelection}
           methodSelected={methodSelected}
           setMethodSelected={setMethodSelected}
           hoursRemaining={hoursRemaining}
@@ -85,6 +107,7 @@ const ParkingModal = ({item}) => {
       <ParkingFooter
         price={price}
         canPay={isOpen}
+        onPress={onPressPay}
         methodSelected={methodSelected}
       />
     </BottomSheetScrollView>

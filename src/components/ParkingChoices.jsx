@@ -15,6 +15,7 @@ const ParkingChoices = ({
   minsRemaining,
   pricePerMinute,
   setPrice,
+  setTimeSelection,
 }) => {
   return isOpen ? (
     <View style={styles.choicesContainer}>
@@ -24,6 +25,7 @@ const ParkingChoices = ({
           isPrivate={isPrivate}
           setPrice={setPrice}
           pricePerMinute={pricePerMinute}
+          setTimeSelection={setTimeSelection}
           mins={isPrivate ? 59 : minsRemaining}
           hours={isPrivate ? 24 : hoursRemaining}
           methodSelected={methodSelected}

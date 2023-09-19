@@ -14,6 +14,7 @@ const BoxClock = ({
   pricePerMinute,
   methodSelected,
   setMethodSelected,
+  setTimeSelection,
 }) => {
   const [date, setDate] = useState(new Date(new Date().setHours(0, 0, 0)));
 
@@ -30,6 +31,11 @@ const BoxClock = ({
 
     //Update state time && Method selection
     setDate(date);
+    setTimeSelection({
+      minutes: date.getMinutes(),
+      hours: date.getHours(),
+    });
+
     !isSelected && setMethodSelected('perHour');
   };
 

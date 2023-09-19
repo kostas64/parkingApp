@@ -7,6 +7,7 @@ import History from '../screens/History';
 import AddCard from '../screens/AddCard';
 import {isAndroid} from '../assets/constants';
 import MyVehicles from '../screens/MyVehicles';
+import Confirmation from '../screens/Confirmation';
 import PaymentMethods from '../screens/PaymentMethods';
 
 const Stack = createStackNavigator();
@@ -48,6 +49,11 @@ const HomeStack = () => {
         name="History"
         component={History}
         options={SlideFromRightIOS}
+      />
+      <Stack.Screen
+        name="Confirmation"
+        component={Confirmation}
+        options={{...SlideFromRightIOS, gestureEnabled: false}}
       />
     </Stack.Navigator>
   );
