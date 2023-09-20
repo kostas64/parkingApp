@@ -31,8 +31,14 @@ const check = require('./images/check.png');
 const thumbsUp = require('./images/thumbsUp.png');
 const error = require('./images/error.png');
 const qr = require('./images/qr-code.png');
+const searchMarkers = require('./images/searchMarkers.png');
+const destination = require('./images/destination.png');
+const payment = require('./images/payment.png');
 
 export default {
+  payment,
+  destination,
+  searchMarkers,
   qr,
   error,
   thumbsUp,
