@@ -1,8 +1,9 @@
-import React from 'react';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
+
+import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import HomeStack from './HomeStack';
@@ -53,6 +54,7 @@ const CustomDrawerContent = ({navigation}) => {
           onPress={() => navigation.navigate('History')}
         />
         <View style={styles.hr} />
+        <Text style={styles.name}>ParkingApp</Text>
       </View>
     </DrawerContentScrollView>
   );
@@ -132,6 +134,12 @@ const styles = StyleSheet.create({
     width: 22,
     height: 22,
     tintColor: colors.lightBlack,
+  },
+  name: {
+    color: colors.lightBlack,
+    fontFamily: 'Poppins-SemiBold',
+    fontSize: 20,
+    margin: 8,
   },
 });
 

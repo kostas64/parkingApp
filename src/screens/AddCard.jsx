@@ -143,12 +143,15 @@ const AddCard = ({navigation}) => {
       toastType: 'success',
       toastMessage: `You card ****${cardNumber.slice(-4)} has been added`,
     });
+
+    onFocusCardNumber();
   };
 
   const onClear = () => {
     setCardNumber('');
     setExpDate('');
     setCcv('');
+    setCardType('');
   };
 
   const animateCardIcon = () => {

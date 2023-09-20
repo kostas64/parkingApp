@@ -1,12 +1,15 @@
 import React from 'react';
+import {useMMKVStorage} from 'react-native-mmkv-storage';
 import {TransitionPresets, createStackNavigator} from '@react-navigation/stack';
 
 import Home from '../screens/Home';
+import {storage} from '../../App';
 import Search from '../screens/Search';
 import History from '../screens/History';
 import AddCard from '../screens/AddCard';
 import {isAndroid} from '../assets/constants';
 import MyVehicles from '../screens/MyVehicles';
+import Onboarding from '../screens/Onboarding';
 import Confirmation from '../screens/Confirmation';
 import PaymentMethods from '../screens/PaymentMethods';
 
@@ -22,6 +25,12 @@ const HomeStack = () => {
   const SlideFromRightIOS = {
     ...TransitionPresets.SlideFromRightIOS,
   };
+
+  const [onboardingSeen] = useMMKVStorage('onboarding', storage, false);
+
+  if (!onboardingSeen) {
+    return <Onboarding />;
+  }
 
   return (
     <Stack.Navigator

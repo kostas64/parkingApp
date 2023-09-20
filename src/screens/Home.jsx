@@ -8,6 +8,7 @@ import {HEIGHT} from '../assets/constants';
 import {mapStyle} from '../assets/mapStyle';
 import MapSearch from '../components/MapSearch';
 import MenuButton from '../components/MenuButton';
+import useBackAction from '../hooks/useBackAction';
 import PriceMarker from '../components/PriceMarker';
 import HomeLoading from '../components/HomeLoading';
 import VehiclePlate from '../components/VehiclePlate';
@@ -25,6 +26,7 @@ const Home = () => {
     longitudeDelta: 0.005,
   };
 
+  useBackAction();
   const mapRef = useRef();
   const bottomSheetRef = useRef(null);
 
