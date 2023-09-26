@@ -7,7 +7,7 @@ const FreeParking = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>
-        Public parking slots are free after 21:00
+        Public parking slots are free from 21:00 to 9:00
       </Text>
     </View>
   );
@@ -15,7 +15,7 @@ const FreeParking = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 220,
+    width: 260,
     marginTop: 32,
     backgroundColor: 'white',
     shadowColor: 'black',

@@ -10,6 +10,7 @@ const CarContextProvider = ({children}) => {
   const [toast, setToast] = useState(null);
   const [plates, setPlates] = useMMKVStorage('plates', storage, []);
   const [credits, setCredits] = useMMKVStorage('credits', storage, []);
+  const [history, setHistory] = useMMKVStorage('history', storage, []);
 
   return (
     <CarContext.Provider
@@ -18,6 +19,8 @@ const CarContextProvider = ({children}) => {
         setPlates,
         credits,
         setCredits,
+        history,
+        setHistory,
         toast,
         setToast,
       }}>

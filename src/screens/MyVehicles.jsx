@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     top: 1,
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 24,
   },
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
     width: WIDTH - 90,
     textAlign: 'center',
     fontFamily: 'Poppins-Medium',
-    fontSize: 16,
+    fontSize: 18,
   },
   trash: {
     width: 22,
@@ -156,8 +157,11 @@ const styles = StyleSheet.create({
   },
   hr: {
     height: 2,
-    width: '100%',
+    width: WIDTH - 36,
     backgroundColor: colors.yellow,
+    alignSelf: 'center',
+    marginHorizontal: 16,
+    borderRadius: 8,
   },
 });
 
