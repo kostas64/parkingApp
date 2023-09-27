@@ -21,9 +21,9 @@ const Button = ({onPress, isDisabled, label, containerStyle}) => {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    borderRadius: 20,
+    borderRadius: 16,
     backgroundColor: colors.yellow,
-    paddingVertical: 14,
+    paddingVertical: 12,
     width: 190,
     alignItems: 'center',
   },

@@ -16,7 +16,7 @@ const AddPlate = ({onPress}) => {
             <View style={styles.plusContainer}>
               <Image source={images.plus} style={styles.plus} />
             </View>
-            <Text style={styles.addNewPlateLabel}>Add new plate</Text>
+            <Text style={styles.addNewPlateLabel}>Add lisence plate</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     position: 'absolute',
     top: 42,
-    left: 68,
+    left: 54,
   },
   addNewPlateLabel: {
     fontSize: 20,
