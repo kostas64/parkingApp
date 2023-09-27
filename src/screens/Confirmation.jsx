@@ -1,15 +1,20 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import images from '../assets/images';
 import {colors} from '../assets/colors';
 import Button from '../components/Button';
+import {CarContext} from '../context/CarContext';
 import useBackAction from '../hooks/useBackAction';
 
 const Confirmation = ({navigation, route}) => {
   useBackAction();
   const insets = useSafeAreaInsets();
+  const {plates, setHistory} = useContext(CarContext);
+
+  const selectedPlate = plates.filter(plate => plate.selected)?.[0]?.value;
+
   const {item, price, full, timeSelection, methodSelected} =
     route?.params || {};
 
@@ -35,6 +40,25 @@ const Confirmation = ({navigation, route}) => {
     (!!full || methodSelected === 'allDay') && !item.private
       ? `You can park until 09:00 tomorrow`
       : `Use the barcode to enter and park until ${dateHours}:${dateMinutes}`;
+
+  const onPress = () => {
+    setHistory(oldHistory => [
+      {
+        img: item.img,
+        parkFrom: new Date(),
+        parkUntil: !date
+          ? new Date(new Date().setHours(21, 0, 0))
+          : new Date(date),
+        fee: price.toFixed(2),
+        parkName: item.name,
+        address: item.address,
+        plate: selectedPlate,
+      },
+      ...oldHistory,
+    ]);
+
+    navigation.replace('Home');
+  };
 
   return (
     <View
@@ -62,7 +86,7 @@ const Confirmation = ({navigation, route}) => {
         <Text style={styles.parkName}>{`Total fee: $${price.toFixed(2)}`}</Text>
       </View>
 
-      <Button label={'Go home'} onPress={() => navigation.replace('Home')} />
+      <Button label={'Go home'} onPress={onPress} />
     </View>
   );
 };

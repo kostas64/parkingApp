@@ -39,13 +39,18 @@ const ParkingModal = ({item}) => {
   const minsRemaining = Math.floor((timeDifference % HOURS) / MINS);
   const costPerHour = `$${item?.costPerHour?.toFixed(2)}/h`;
   const freeSlots = `${item?.free} slot${item?.free !== 1 ? 's' : ''}`;
-  const isOpen = item?.private || (endDay - now) / (1000 * 60) > 0;
+  const isOpen =
+    item?.private ||
+    ((endDay - now) / (1000 * 60) > 0 &&
+      (endDay - now) / (1000 * 60) < 43200000);
+
   const fullDayFromPicker =
     hoursRemaining === timeSelection?.hours &&
     minsRemaining === timeSelection?.minutes;
 
   const onPressPay = () => {
     navigation.navigate('Confirmation', {
+      bookTimestamp: new Date().toString(),
       item,
       price,
       timeSelection,
