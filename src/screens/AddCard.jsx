@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {View, StyleSheet, TextInput, Text, Animated} from 'react-native';
+import {View, StyleSheet, TextInput, Text, Animated, Image} from 'react-native';
 
 import {
   isExpValid,
@@ -30,6 +30,15 @@ const AddCard = ({navigation}) => {
   const [cardType, setCardType] = useState(null);
 
   const isCcvValid = ccv.length === 3;
+
+  const isCardValid =
+    isCardNumberValid(cardNumber, cardType, setCardType, false) &&
+    isExpValid(expDate) &&
+    isCcvValid;
+
+  const isCardLengthCorrect =
+    (cardNumber.length === 18 && cardType === 'amex') ||
+    (cardNumber.length === 19 && cardType !== 'amex');
 
   const onChangeCardNumber = value => {
     let tempState = value.replace('.', '').replace(',', '').replace('-', '');
@@ -178,11 +187,6 @@ const AddCard = ({navigation}) => {
     animateCardIcon();
   }, [cardType]);
 
-  const isCardValid =
-    isCardNumberValid(cardNumber, cardType, setCardType, false) &&
-    isExpValid(expDate) &&
-    isCcvValid;
-
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -206,7 +210,22 @@ const AddCard = ({navigation}) => {
       <Animated.View
         style={[styles.inputContainer, {transform: [{translateX}]}]}>
         <View style={styles.inputMargin}>
-          <Text style={styles.cardInputLabel}>CARD NUMBER</Text>
+          <View style={styles.rowCenter}>
+            <Text
+              style={[
+                styles.cardInputLabel,
+                isCardLengthCorrect &&
+                  !isCardNumberValid(cardNumber, cardType, setCardType) && {
+                    color: 'tomato',
+                  },
+              ]}>
+              CARD NUMBER
+            </Text>
+            {isCardLengthCorrect &&
+              !isCardNumberValid(cardNumber, cardType, setCardType) && (
+                <Image source={images.exclamation} style={styles.exclamation} />
+              )}
+          </View>
           <TextInput
             autoFocus
             ref={cardRef}
@@ -223,12 +242,10 @@ const AddCard = ({navigation}) => {
               styles.textInput,
               {
                 borderBottomColor:
-                  ((cardNumber.length === 18 && cardType === 'amex') ||
-                    (cardNumber.length === 19 && cardType !== 'amex')) &&
+                  isCardLengthCorrect &&
                   isCardNumberValid(cardNumber, cardType, setCardType)
                     ? 'green'
-                    : ((cardNumber.length === 18 && cardType === 'amex') ||
-                        (cardNumber.length === 19 && cardType !== 'amex')) &&
+                    : isCardLengthCorrect &&
                       !isCardNumberValid(cardNumber, cardType, setCardType)
                     ? 'tomato'
                     : 'rgba(0,0,0,0.1)',
@@ -238,7 +255,21 @@ const AddCard = ({navigation}) => {
           />
         </View>
         <View style={styles.inputMargin}>
-          <Text style={styles.cardInputLabel}>EXPIRY</Text>
+          <View style={styles.rowCenter}>
+            <Text
+              style={[
+                styles.cardInputLabel,
+                !isExpValid(expDate) &&
+                  expDate.length === 5 && {
+                    color: 'tomato',
+                  },
+              ]}>
+              EXPIRY
+            </Text>
+            {!isExpValid(expDate) && expDate.length === 5 && (
+              <Image source={images.exclamation} style={styles.exclamation} />
+            )}
+          </View>
           <TextInput
             ref={expRef}
             maxLength={5}
@@ -262,7 +293,18 @@ const AddCard = ({navigation}) => {
           />
         </View>
         <View style={styles.inputMargin}>
-          <Text style={styles.cardInputLabel}>CCV/CVC</Text>
+          <View style={styles.rowCenter}>
+            <Text
+              style={[
+                styles.cardInputLabel,
+                !isCcvValid && ccv.length > 0 && {color: 'tomato'},
+              ]}>
+              CCV
+            </Text>
+            {!isCcvValid && ccv.length > 0 && (
+              <Image source={images.exclamation} style={styles.exclamation} />
+            )}
+          </View>
           <TextInput
             ref={ccvRef}
             value={ccv}
@@ -301,6 +343,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 16,
   },
+  rowCenter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   inputMargin: {
     marginLeft: 24,
   },
@@ -313,6 +359,11 @@ const styles = StyleSheet.create({
     padding: 4,
     fontSize: 18,
     borderBottomWidth: 2,
+  },
+  exclamation: {
+    width: 14,
+    height: 14,
+    marginLeft: 4,
   },
 });
 

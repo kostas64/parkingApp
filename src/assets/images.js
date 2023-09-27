@@ -34,8 +34,10 @@ const qr = require('./images/qr-code.png');
 const searchMarkers = require('./images/searchMarkers.png');
 const destination = require('./images/destination.png');
 const payment = require('./images/payment.png');
+const exclamation = require('./images/exclamation.png');
 
 export default {
+  exclamation,
   payment,
   destination,
   searchMarkers,

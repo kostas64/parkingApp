@@ -79,10 +79,8 @@ const Confirmation = ({navigation, route}) => {
         </View>
 
         <Text style={styles.tip}>{subtitle}</Text>
-
         <Text style={styles.parkName}>{item.name}</Text>
         <Text style={styles.parkAddress}>{item.address}</Text>
-
         <Text style={styles.parkName}>{`Total fee: $${price.toFixed(2)}`}</Text>
       </View>
 

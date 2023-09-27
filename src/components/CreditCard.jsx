@@ -104,7 +104,7 @@ const CreditCard = React.forwardRef(
         <Animated.View style={[styles.backContainer, flipToBackStyle]}>
           <View style={styles.blackLine} />
           <View style={styles.cvvContainer}>
-            <Text style={styles.expDate}>CVV</Text>
+            <Text style={styles.expDate}>CCV</Text>
             <View style={styles.cvvBox}>
               <Text style={styles.cardNumber}>{ccvSt}</Text>
             </View>

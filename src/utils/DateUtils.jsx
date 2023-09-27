@@ -1,5 +1,5 @@
 export const formatDate = date => {
-  const day = date.getDay() < 10 ? `0${date.getDay()}` : date.getDay();
+  const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
   const month = date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth();
   const year = date.getFullYear();
   const minutes =

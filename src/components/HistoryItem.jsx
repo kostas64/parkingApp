@@ -1,4 +1,10 @@
-import React, {useContext} from 'react';
+import Animated, {
+  withRepeat,
+  withTiming,
+  useSharedValue,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
+import React, {useContext, useEffect} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
 import {colors} from '../assets/colors';
@@ -7,12 +13,34 @@ import {formatDate} from '../utils/DateUtils';
 import {CarContext} from '../context/CarContext';
 
 const HistoryItem = ({item, index}) => {
+  const scaleDot = useSharedValue(0.9);
+
   const {history} = useContext(CarContext);
+
+  const isActive = new Date(item.parkUntil) > new Date();
+  const opacity = isActive ? 1 : 0.4;
+
+  const dotStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{scale: scaleDot.value}],
+    };
+  });
+
+  useEffect(() => {
+    scaleDot.value = withRepeat(
+      withTiming(1.2, {
+        duration: 1000,
+      }),
+      0,
+      true,
+    );
+  }, []);
 
   return (
     <>
       <View style={styles.itemContainer}>
-        <Image source={item.img} style={styles.img} />
+        <Image source={item.img} style={[styles.img, {opacity}]} />
+        {isActive && <Animated.View style={[styles.activeDot, dotStyle]} />}
         <View style={styles.flexBetween}>
           <View>
             <Text style={styles.name}>{item.parkName}</Text>
@@ -111,6 +139,17 @@ const styles = StyleSheet.create({
   },
   margin: {
     marginTop: 12,
+  },
+  activeDot: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    position: 'absolute',
+    left: 96,
+    top: 86,
+    borderWidth: 3,
+    borderColor: 'white',
+    backgroundColor: '#1db450',
   },
 });
 
