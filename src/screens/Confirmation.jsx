@@ -5,6 +5,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import images from '../assets/images';
 import {colors} from '../assets/colors';
 import Button from '../components/Button';
+import {isIOS} from '../assets/constants';
 import {CarContext} from '../context/CarContext';
 import useBackAction from '../hooks/useBackAction';
 
@@ -82,6 +83,10 @@ const Confirmation = ({navigation, route}) => {
         <Text style={styles.parkName}>{item.name}</Text>
         <Text style={styles.parkAddress}>{item.address}</Text>
         <Text style={styles.parkName}>{`Total fee: $${price.toFixed(2)}`}</Text>
+        <Image
+          source={isIOS ? images.appleW : images.googleW}
+          style={styles.wallet}
+        />
       </View>
 
       <Button label={'Go home'} onPress={onPress} />
@@ -138,6 +143,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     fontSize: 16,
     color: 'rgba(0,0,0,0.5)',
+  },
+  wallet: {
+    height: 70,
+    aspectRatio: 3.3 / 1,
+    marginTop: 24,
   },
 });
 

@@ -35,8 +35,12 @@ const searchMarkers = require('./images/searchMarkers.png');
 const destination = require('./images/destination.png');
 const payment = require('./images/payment.png');
 const exclamation = require('./images/exclamation.png');
+const appleW = require('./images/appleWallet.png');
+const googleW = require('./images/googleWallet.png');
 
 export default {
+  googleW,
+  appleW,
   exclamation,
   payment,
   destination,
