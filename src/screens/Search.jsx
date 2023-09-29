@@ -1,7 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 
+import images from '../assets/images';
 import {colors} from '../assets/colors';
 
 const Search = ({route, navigation}) => {
@@ -10,14 +11,24 @@ const Search = ({route, navigation}) => {
 
   return (
     <View style={styles.container}>
+      {/* Close icon */}
+      <TouchableOpacity
+        onPress={() => navigation.pop()}
+        style={styles.closeContainer}
+        hitSlop={styles.hitSlop}>
+        <Image source={images.close} style={styles.close} />
+      </TouchableOpacity>
+
+      {/* Title */}
       <Text style={styles.title}>Search parking slots around</Text>
 
+      {/* Search */}
       <GooglePlacesAutocomplete
         styles={{
           textInputContainer: styles.textInputContainer,
           textInput: styles.textInput,
         }}
-        placeholder="Search"
+        placeholder="City, Place, Zip Code ..."
         textInputProps={styles.textInputProps}
         fetchDetails={true}
         enablePoweredByContainer={false}
@@ -72,6 +83,20 @@ const styles = StyleSheet.create({
   textInputProps: {
     backgroundColor: colors.yellow,
     placeholderTextColor: 'rgba(0,0,0,0.5)',
+  },
+  closeContainer: {
+    alignSelf: 'flex-end',
+  },
+  hitSlop: {
+    top: 8,
+    left: 8,
+    bottom: 8,
+    right: 8,
+  },
+  close: {
+    width: 16,
+    height: 16,
+    marginBottom: 8,
   },
 });
 
