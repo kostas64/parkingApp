@@ -48,12 +48,16 @@ const MapParkingCard = ({max, openModal, selectedSlot, setSelectedSlot}) => {
   return (
     <FlingGestureHandler
       direction={Directions.RIGHT}
-      onActivated={() =>
-        selectedSlot < max - 1 && setSelectedSlot(old => old + 1)
-      }>
+      onActivated={() => {
+        selectedSlot < max - 1 && setSelectedSlot(old => old + 1);
+        selectedSlot === max - 1 && setSelectedSlot(0);
+      }}>
       <FlingGestureHandler
         direction={Directions.LEFT}
-        onActivated={() => selectedSlot > 0 && setSelectedSlot(old => old - 1)}>
+        onActivated={() => {
+          selectedSlot > 0 && setSelectedSlot(old => old - 1);
+          selectedSlot === 0 && setSelectedSlot(max - 1);
+        }}>
         <AnimPressable
           onPress={() => openModal(markers?.[state])}
           style={[
@@ -122,12 +126,12 @@ const styles = StyleSheet.create({
   name: {
     fontFamily: 'Poppins-Medium',
     color: colors.lightBlack,
-    paddingBottom: 2,
     fontSize: 18,
     fontWeight: '700',
   },
   address: {
     fontFamily: 'Poppins-Regular',
+    fontSize: 13,
     width: WIDTH - 96 - 96,
     color: 'rgba(0,0,0,0.5)',
   },
