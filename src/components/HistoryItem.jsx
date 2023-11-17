@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     color: colors.lightBlack,
   },
   hr: {
-    height: 2,
+    height: 1,
     width: WIDTH - 36,
     backgroundColor: colors.yellow,
     alignSelf: 'center',

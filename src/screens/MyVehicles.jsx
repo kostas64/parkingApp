@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   hr: {
-    height: 2,
+    height: 1,
     width: WIDTH - 36,
     backgroundColor: colors.yellow,
     alignSelf: 'center',

@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   pay: {
     top: isAndroid ? 2 : 0,
     fontFamily: 'Poppins-SemiBold',
-    fontSize: 20,
+    fontSize: 16,
   },
 });
 
