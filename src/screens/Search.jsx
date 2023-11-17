@@ -9,6 +9,12 @@ const Search = ({route, navigation}) => {
   const setAddress = route?.params?.setAddress;
   const onItemPress = route?.params?.onItemPress;
 
+  const textInputProps = {
+    autoFocus: true,
+    backgroundColor: colors.yellow,
+    placeholderTextColor: 'rgba(0,0,0,0.5)',
+  };
+
   return (
     <View style={styles.container}>
       {/* Close icon */}
@@ -29,7 +35,7 @@ const Search = ({route, navigation}) => {
           textInput: styles.textInput,
         }}
         placeholder="City, Place, Zip Code ..."
-        textInputProps={styles.textInputProps}
+        textInputProps={textInputProps}
         fetchDetails={true}
         enablePoweredByContainer={false}
         onPress={(_, details = null) => {
@@ -80,10 +86,7 @@ const styles = StyleSheet.create({
     color: colors.lightBlack,
     fontFamily: 'Poppins-Regular',
   },
-  textInputProps: {
-    backgroundColor: colors.yellow,
-    placeholderTextColor: 'rgba(0,0,0,0.5)',
-  },
+
   closeContainer: {
     alignSelf: 'flex-end',
   },
