@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     paddingHorizontal: 20,
     paddingVertical: 16,
-    width: 140,
+    width: 160,
   },
   clock: {
     tintColor: colors.lightBlack,
