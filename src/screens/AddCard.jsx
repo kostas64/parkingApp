@@ -40,6 +40,8 @@ const AddCard = ({navigation}) => {
     (cardNumber.length === 18 && cardType === 'amex') ||
     (cardNumber.length === 19 && cardType !== 'amex');
 
+  const cardLength = cardType === 'amex' ? 18 : 19;
+
   const onChangeCardNumber = value => {
     let tempState = value.replace('.', '').replace(',', '').replace('-', '');
 
@@ -69,6 +71,13 @@ const AddCard = ({navigation}) => {
       }).start(() => {
         expRef.current.focus();
       });
+    }
+
+    if (
+      value?.[value?.length - 1] === ' ' &&
+      value.length > cardNumber.length
+    ) {
+      return;
     }
 
     setCardNumber(tempState);
@@ -229,7 +238,7 @@ const AddCard = ({navigation}) => {
           <TextInput
             autoFocus
             ref={cardRef}
-            maxLength={19}
+            maxLength={cardLength}
             value={cardNumber}
             autoCorrect={false}
             autoComplete={'off'}
